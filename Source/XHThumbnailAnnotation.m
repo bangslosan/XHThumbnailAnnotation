@@ -31,4 +31,10 @@
     
 }
 
+#pragma mark - MKAnnotation delegate
+
+- (MKAnnotationView *)annotationViewInMap:(MKMapView *)mapView {
+    
+}
+
 @end
