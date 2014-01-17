@@ -17,6 +17,13 @@
 
 @end
 
-@interface XHThumbnailAnnotation : NSObject
+@interface XHThumbnailAnnotation : NSObject <MKAnnotation, XHThumbnailAnnotationDelegate>
+
+@property (nonatomic, strong) XHThumbnailAnnotationView *thumbnailAnnotationView;
+@property (nonatomic, strong) XHThumbnail *thumbnail;
+@property (nonatomic, readwrite) CLLocationCoordinate2D coordinate;
+
+- (instancetype)initWithThumbnail:(XHThumbnail *)thumbnail;
+- (instancetype)initWithThumbnail:(XHThumbnail *)thumbnail aniamtion:(BOOL)animated;
 
 @end
