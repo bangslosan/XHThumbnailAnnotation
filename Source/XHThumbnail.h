@@ -7,7 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <MapKit/MapKit.h>
+#import "XHThumbnailUser.h"
+
+typedef void (^XHThumbnailActionBlock)();
 
 @interface XHThumbnail : NSObject
-
+@property (nonatomic, strong) XHThumbnailUser *thumbnailUser;
+@property (nonatomic, readwrite) CLLocationCoordinate2D coordinate;
+@property (nonatomic, copy) XHThumbnailActionBlock disclosureBlock;
 @end

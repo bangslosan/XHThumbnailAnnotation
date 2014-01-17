@@ -25,6 +25,7 @@
 		AB5EA00C188937A60092E962 /* XHThumbnailAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5EA00B188937A60092E962 /* XHThumbnailAnnotation.m */; };
 		AB5EA00F188937E50092E962 /* XHThumbnail.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5EA00E188937E50092E962 /* XHThumbnail.m */; };
 		AB5EA012188938370092E962 /* XHThumbnailAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5EA011188938370092E962 /* XHThumbnailAnnotationView.m */; };
+		AB5EA015188939250092E962 /* XHThumbnailUser.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5EA014188939250092E962 /* XHThumbnailUser.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +65,8 @@
 		AB5EA00E188937E50092E962 /* XHThumbnail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHThumbnail.m; sourceTree = "<group>"; };
 		AB5EA010188938370092E962 /* XHThumbnailAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHThumbnailAnnotationView.h; sourceTree = "<group>"; };
 		AB5EA011188938370092E962 /* XHThumbnailAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHThumbnailAnnotationView.m; sourceTree = "<group>"; };
+		AB5EA013188939250092E962 /* XHThumbnailUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHThumbnailUser.h; sourceTree = "<group>"; };
+		AB5EA014188939250092E962 /* XHThumbnailUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHThumbnailUser.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -172,6 +175,8 @@
 				AB5EA00B188937A60092E962 /* XHThumbnailAnnotation.m */,
 				AB5EA00D188937E50092E962 /* XHThumbnail.h */,
 				AB5EA00E188937E50092E962 /* XHThumbnail.m */,
+				AB5EA013188939250092E962 /* XHThumbnailUser.h */,
+				AB5EA014188939250092E962 /* XHThumbnailUser.m */,
 				AB5EA010188938370092E962 /* XHThumbnailAnnotationView.h */,
 				AB5EA011188938370092E962 /* XHThumbnailAnnotationView.m */,
 			);
@@ -278,6 +283,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AB5E9FEB188937020092E962 /* ViewController.m in Sources */,
+				AB5EA015188939250092E962 /* XHThumbnailUser.m in Sources */,
 				AB5EA00F188937E50092E962 /* XHThumbnail.m in Sources */,
 				AB5EA00C188937A60092E962 /* XHThumbnailAnnotation.m in Sources */,
 				AB5E9FE2188937020092E962 /* AppDelegate.m in Sources */,
