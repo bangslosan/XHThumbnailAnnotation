@@ -37,10 +37,6 @@
     XHThumbnailAnnotationViewState _state;
 }
 
-@property (nonatomic, strong) UIImageView *avatarImageView;
-@property (nonatomic, strong) UILabel *userNameLabel;
-@property (nonatomic, strong) UILabel *distanceLabel;
-
 @end
 
 @implementation XHThumbnailAnnotationView

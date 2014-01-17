@@ -35,6 +35,10 @@ typedef enum {
 }
 
 // 显示简单的信息，详细信息需要在详细页面
+@property (nonatomic, strong) UIImageView *avatarImageView;
+@property (nonatomic, strong) UILabel *userNameLabel;
+@property (nonatomic, strong) UILabel *distanceLabel;
+
 @property (nonatomic, weak) id <XHThumbnailAnnotationViewDelegate> delegate;
 @property (nonatomic, readwrite) CLLocationCoordinate2D coordinate;
 @property (nonatomic, copy) XHThumbnailActionBlock disclosureBlock;
