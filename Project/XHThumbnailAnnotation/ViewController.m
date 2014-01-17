@@ -11,27 +11,48 @@
 #import "XHThumbnailAnnotation.h"
 
 @interface ViewController ()
-
+@property (nonatomic, strong) MKMapView *mapView;
 @end
 
 @implementation ViewController
+
+#pragma mark - Action 
+
+- (void)_addAnnotation {
+    XHThumbnailUser *empireUser = [[XHThumbnailUser alloc] init];
+    empireUser.avatarImage = [UIImage imageNamed:@"meicon.png"];
+    empireUser.userName = @"洛杉矶";
+    empireUser.distance = @"10000000米以内";
+    XHThumbnail *empire = [[XHThumbnail alloc] init];
+    empire.thumbnailUser = empireUser;
+    empire.coordinate = CLLocationCoordinate2DMake(33.979809, -118.219757);
+    empire.disclosureBlock = ^{ NSLog(@"添加的人物"); };
+    [_mapView addAnnotation:[[XHThumbnailAnnotation alloc] initWithThumbnail:empire]];
+}
+
+#pragma mark - life cycle
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    [self _setupBarItem];
     [self _setupMapView];
+}
+
+- (void)_setupBarItem {
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(_addAnnotation)];
 }
 
 - (void)_setupMapView {
     // Map View
-    MKMapView *mapView = [[MKMapView alloc] initWithFrame:self.view.bounds];
-    mapView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-    mapView.delegate = self;
-    [self.view addSubview:mapView];
+    _mapView = [[MKMapView alloc] initWithFrame:self.view.bounds];
+    _mapView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    _mapView.delegate = self;
+    [self.view addSubview:self.mapView];
     
     // Annotations
-    [mapView addAnnotations:[self _generateAnnotations]];
+    [_mapView addAnnotations:[self _generateAnnotations]];
 }
 
 - (NSArray *)_generateAnnotations {
@@ -39,36 +60,36 @@
     
     // Empire State Building
     XHThumbnailUser *empireUser = [[XHThumbnailUser alloc] init];
-    empireUser.avatarImage = [UIImage imageNamed:@"empire.jpg"];
+    empireUser.avatarImage = [UIImage imageNamed:@"meicon.png"];
     empireUser.userName = @"Jack";
     empireUser.distance = @"1000米以内";
     XHThumbnail *empire = [[XHThumbnail alloc] init];
     empire.thumbnailUser = empireUser;
-    empire.coordinate = CLLocationCoordinate2DMake(40.75, -73.99);
+    empire.coordinate = CLLocationCoordinate2DMake(23.117184, 113.392778);
     empire.disclosureBlock = ^{ NSLog(@"selected Empire"); };
     
     [annotations addObject:[[XHThumbnailAnnotation alloc] initWithThumbnail:empire]];
     
     // Apple HQ
     XHThumbnailUser *appleUser = [[XHThumbnailUser alloc] init];
-    appleUser.avatarImage = [UIImage imageNamed:@"apple.jpg"];
-    appleUser.userName = @"Apple HQ";
+    appleUser.avatarImage = [UIImage imageNamed:@"meicon.png"];
+    appleUser.userName = @"SJQ";
     appleUser.distance = @"2000米以内";
     XHThumbnail *apple = [[XHThumbnail alloc] init];
     apple.thumbnailUser = appleUser;
-    apple.coordinate = CLLocationCoordinate2DMake(37.33, -122.03);
+    apple.coordinate = CLLocationCoordinate2DMake(23.125452, 113.373169);
     apple.disclosureBlock = ^{ NSLog(@"selected Appple"); };
     
     [annotations addObject:[[XHThumbnailAnnotation alloc] initWithThumbnail:apple]];
     
     // Parliament of Canada
     XHThumbnailUser *ottawaUser = [[XHThumbnailUser alloc] init];
-    ottawaUser.avatarImage = [UIImage imageNamed:@"ottawa.jpg"];
-    ottawaUser.userName = @"Jack";
-    ottawaUser.distance = @"1000米以内";
+    ottawaUser.avatarImage = [UIImage imageNamed:@"meicon.png"];
+    ottawaUser.userName = @"曾宪华Home";
+    ottawaUser.distance = @"10000米以内";
     XHThumbnail *ottawa = [[XHThumbnail alloc] init];
     ottawa.thumbnailUser = ottawaUser;
-    ottawa.coordinate = CLLocationCoordinate2DMake(45.43, -75.70);
+    ottawa.coordinate = CLLocationCoordinate2DMake(23.744419, 114.696308);
     ottawa.disclosureBlock = ^{ NSLog(@"selected Ottawa"); };
     
     [annotations addObject:[[XHThumbnailAnnotation alloc] initWithThumbnail:ottawa]];
