@@ -23,13 +23,19 @@ typedef enum {
     XHThumbnailAnnotationViewStateAnimating,
 } XHThumbnailAnnotationViewState;
 
+@protocol XHThumbnailAnnotationViewDelegate <NSObject>
 
+- (void)didSelectAnnotationViewInMap:(MKMapView *)mapView;
+- (void)didDeselectAnnotationViewInMap:(MKMapView *)mapView;
+
+@end
 
 @interface XHThumbnailAnnotationView : MKAnnotationView {
 
 }
 
 // 显示简单的信息，详细信息需要在详细页面
+@property (nonatomic, weak) id <XHThumbnailAnnotationViewDelegate> delegate;
 @property (nonatomic, readwrite) CLLocationCoordinate2D coordinate;
 @property (nonatomic, copy) XHThumbnailActionBlock disclosureBlock;
 
