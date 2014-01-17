@@ -153,4 +153,41 @@
     [self.layer insertSublayer:_strokeAndShadowLayer atIndex:0];
 }
 
+#pragma mark - Path help method
+
+- (CGPathRef)newBubbleWithRect:(CGRect)rect andOffset:(CGSize)offset {
+    CGRect offsetRect = CGRectMake(rect.origin.x+offset.width, rect.origin.y+offset.height, rect.size.width, rect.size.height);
+    return [self newBubbleWithRect:offsetRect];
+}
+
+- (CGPathRef)newBubbleWithRect:(CGRect)rect {
+    CGFloat stroke = 1.0;
+	CGFloat radius = 7.0;
+	CGMutablePathRef path = CGPathCreateMutable();
+	CGFloat parentX = rect.origin.x + rect.size.width/2;
+	
+	//Determine Size
+	rect.size.width -= stroke + 14;
+	rect.size.height -= stroke + 29;
+	rect.origin.x += stroke / 2.0 + 7;
+	rect.origin.y += stroke / 2.0 + 7;
+    
+	//Create Path For Callout Bubble
+	CGPathMoveToPoint(path, NULL, rect.origin.x, rect.origin.y + radius);
+	CGPathAddLineToPoint(path, NULL, rect.origin.x, rect.origin.y + rect.size.height - radius);
+	CGPathAddArc(path, NULL, rect.origin.x + radius, rect.origin.y + rect.size.height - radius, radius, M_PI, M_PI_2, 1);
+	CGPathAddLineToPoint(path, NULL, parentX - 14, rect.origin.y + rect.size.height);
+	CGPathAddLineToPoint(path, NULL, parentX, rect.origin.y + rect.size.height + 14);
+	CGPathAddLineToPoint(path, NULL, parentX + 14, rect.origin.y + rect.size.height);
+	CGPathAddLineToPoint(path, NULL, rect.origin.x + rect.size.width - radius, rect.origin.y + rect.size.height);
+	CGPathAddArc(path, NULL, rect.origin.x + rect.size.width - radius, rect.origin.y + rect.size.height - radius, radius, M_PI_2, 0.0f, 1);
+	CGPathAddLineToPoint(path, NULL, rect.origin.x + rect.size.width, rect.origin.y + radius);
+	CGPathAddArc(path, NULL, rect.origin.x + rect.size.width - radius, rect.origin.y + radius, radius, 0.0f, -M_PI_2, 1);
+	CGPathAddLineToPoint(path, NULL, rect.origin.x + radius, rect.origin.y);
+	CGPathAddArc(path, NULL, rect.origin.x + radius, rect.origin.y + radius, radius, -M_PI_2, M_PI, 1);
+	CGPathCloseSubpath(path);
+    return path;
+}
+
+
 @end
