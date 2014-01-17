@@ -222,13 +222,9 @@
     // Image
     [UIView animateWithDuration:XHThumbnailAnnotationViewAnimationDuration animations:^{
         if (animationDirection == XHThumbnailAnnotationViewAnimationDirectionGrow) {
-            CGRect avatarImageViewFrame = _avatarImageView.frame;
-            avatarImageViewFrame.origin.x -= XHThumbnailAnnotationViewExpandOffset/2;
-            _avatarImageView.frame = avatarImageViewFrame;
+            _avatarImageView.frame = CGRectMake(_avatarImageView.frame.origin.x-XHThumbnailAnnotationViewExpandOffset/2, _avatarImageView.frame.origin.y, _avatarImageView.frame.size.width, _avatarImageView.frame.size.height);
         } else if (animationDirection == XHThumbnailAnnotationViewAnimationDirectionShrink) {
-            CGRect avatarImageViewFrame = _avatarImageView.frame;
-            avatarImageViewFrame.origin.x += XHThumbnailAnnotationViewExpandOffset;
-            _avatarImageView.frame = avatarImageViewFrame;
+            _avatarImageView.frame = CGRectMake(_avatarImageView.frame.origin.x+XHThumbnailAnnotationViewExpandOffset/2, _avatarImageView.frame.origin.y, _avatarImageView.frame.size.width, _avatarImageView.frame.size.height);
         }
     } completion:^(BOOL finished) {
         if (animationDirection == XHThumbnailAnnotationViewAnimationDirectionShrink) {
