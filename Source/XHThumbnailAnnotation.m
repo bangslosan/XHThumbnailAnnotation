@@ -20,4 +20,15 @@
     return self;
 }
 
+- (void)updateThumbnail:(XHThumbnail *)thumbnail aniamtion:(BOOL)animated {
+    if (animated) {
+        [UIView animateWithDuration:0.33f delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+            _coordinate = thumbnail.coordinate;
+        } completion:NULL];
+    } else {
+        _coordinate = thumbnail.coordinate;
+    }
+    
+}
+
 @end
