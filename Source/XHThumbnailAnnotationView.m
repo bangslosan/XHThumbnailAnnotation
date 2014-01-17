@@ -29,6 +29,16 @@
 
 @end
 
+@interface XHThumbnailAnnotationView () {
+    
+}
+
+@property (nonatomic, strong) UIImageView *avatarImageView;
+@property (nonatomic, strong) UILabel *userNameLabel;
+@property (nonatomic, strong) UILabel *distanceLabel;
+
+@end
+
 @implementation XHThumbnailAnnotationView
 
 - (instancetype)initWithAnnotation:(id<MKAnnotation>)annotation {
