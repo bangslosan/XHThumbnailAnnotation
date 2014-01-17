@@ -23,6 +23,7 @@
 		AB5E9FFE188937020092E962 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AB5E9FFC188937020092E962 /* InfoPlist.strings */; };
 		AB5EA000188937020092E962 /* XHThumbnailAnnotationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5E9FFF188937020092E962 /* XHThumbnailAnnotationTests.m */; };
 		AB5EA00C188937A60092E962 /* XHThumbnailAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5EA00B188937A60092E962 /* XHThumbnailAnnotation.m */; };
+		AB5EA00F188937E50092E962 /* XHThumbnail.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5EA00E188937E50092E962 /* XHThumbnail.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,8 @@
 		AB5E9FFF188937020092E962 /* XHThumbnailAnnotationTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XHThumbnailAnnotationTests.m; sourceTree = "<group>"; };
 		AB5EA00A188937A60092E962 /* XHThumbnailAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHThumbnailAnnotation.h; sourceTree = "<group>"; };
 		AB5EA00B188937A60092E962 /* XHThumbnailAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHThumbnailAnnotation.m; sourceTree = "<group>"; };
+		AB5EA00D188937E50092E962 /* XHThumbnail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHThumbnail.h; sourceTree = "<group>"; };
+		AB5EA00E188937E50092E962 /* XHThumbnail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHThumbnail.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +167,8 @@
 			children = (
 				AB5EA00A188937A60092E962 /* XHThumbnailAnnotation.h */,
 				AB5EA00B188937A60092E962 /* XHThumbnailAnnotation.m */,
+				AB5EA00D188937E50092E962 /* XHThumbnail.h */,
+				AB5EA00E188937E50092E962 /* XHThumbnail.m */,
 			);
 			name = Source;
 			path = ../Source;
@@ -268,6 +273,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AB5E9FEB188937020092E962 /* ViewController.m in Sources */,
+				AB5EA00F188937E50092E962 /* XHThumbnail.m in Sources */,
 				AB5EA00C188937A60092E962 /* XHThumbnailAnnotation.m in Sources */,
 				AB5E9FE2188937020092E962 /* AppDelegate.m in Sources */,
 				AB5E9FDE188937020092E962 /* main.m in Sources */,
