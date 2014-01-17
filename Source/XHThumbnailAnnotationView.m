@@ -112,7 +112,7 @@
 
 - (void)_setLayerProperties {
     _shapeLayer = [ShadowShapeLayer layer];
-    CGPathRef shapeLayerPath = [self newBubbleWithRect:self.bounds andOffset:CGSizeMake(XHThumbnailAnnotationViewExpandOffset/2, 0)];
+    CGPathRef shapeLayerPath = [self _newBubbleWithRect:self.bounds andOffset:CGSizeMake(XHThumbnailAnnotationViewExpandOffset/2, 0)];
     _shapeLayer.path = shapeLayerPath;
     CGPathRelease(shapeLayerPath);
     
@@ -121,7 +121,7 @@
     
     _strokeAndShadowLayer = [CAShapeLayer layer];
     
-    CGPathRef _strokeAndShadowLayerPath = [self newBubbleWithRect:self.bounds];
+    CGPathRef _strokeAndShadowLayerPath = [self _newBubbleWithRect:self.bounds];
     _strokeAndShadowLayer.path = _strokeAndShadowLayerPath;
     CGPathRelease(_strokeAndShadowLayerPath);
     
@@ -155,12 +155,12 @@
 
 #pragma mark - Path help method
 
-- (CGPathRef)newBubbleWithRect:(CGRect)rect andOffset:(CGSize)offset {
+- (CGPathRef)_newBubbleWithRect:(CGRect)rect andOffset:(CGSize)offset {
     CGRect offsetRect = CGRectMake(rect.origin.x+offset.width, rect.origin.y+offset.height, rect.size.width, rect.size.height);
-    return [self newBubbleWithRect:offsetRect];
+    return [self _newBubbleWithRect:offsetRect];
 }
 
-- (CGPathRef)newBubbleWithRect:(CGRect)rect {
+- (CGPathRef)_newBubbleWithRect:(CGRect)rect {
     CGFloat stroke = 1.0;
 	CGFloat radius = 7.0;
 	CGMutablePathRef path = CGPathCreateMutable();
@@ -189,14 +189,101 @@
     return path;
 }
 
+#pragma mark - animation
+
+- (void)_expand {
+    if (_state != XHThumbnailAnnotationViewStateCollapsed) return;
+    _state = XHThumbnailAnnotationViewStateAnimating;
+    
+    [self _animateBubbleWithDirection:XHThumbnailAnnotationViewAnimationDirectionGrow];
+    self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width+XHThumbnailAnnotationViewExpandOffset, self.frame.size.height);
+    self.centerOffset = CGPointMake(XHThumbnailAnnotationViewExpandOffset/2, -XHThumbnailAnnotationViewVerticalOffset);
+    [UIView animateWithDuration:XHThumbnailAnnotationViewAnimationDuration/2 delay:XHThumbnailAnnotationViewAnimationDuration options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        _disclosureButton.alpha = 1;
+        _userNameLabel.alpha = 1;
+        _distanceLabel.alpha = 1;
+    } completion:^(BOOL finished) {
+        _state = XHThumbnailAnnotationViewStateExpanded;
+    }];
+}
+
+- (void)_shrink {
+    if (_state != XHThumbnailAnnotationViewStateExpanded) return;
+    _state = XHThumbnailAnnotationViewStateAnimating;
+    
+    self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width-XHThumbnailAnnotationViewExpandOffset, self.frame.size.height);
+    [UIView animateWithDuration:XHThumbnailAnnotationViewAnimationDuration/2 delay:0.0f options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        _disclosureButton.alpha = 0;
+        _userNameLabel.alpha = 0;
+        _distanceLabel.alpha = 0;
+    } completion:^(BOOL finished) {
+        [self _animateBubbleWithDirection:XHThumbnailAnnotationViewAnimationDirectionShrink];
+        self.centerOffset = CGPointMake(0, -XHThumbnailAnnotationViewVerticalOffset);
+    }];
+}
+
+- (void)_animateBubbleWithDirection:(XHThumbnailAnnotationViewAnimationDirection)animationDirection {
+    // Image
+    [UIView animateWithDuration:XHThumbnailAnnotationViewAnimationDuration animations:^{
+        if (animationDirection == XHThumbnailAnnotationViewAnimationDirectionGrow) {
+            CGRect avatarImageViewFrame = _avatarImageView.frame;
+            avatarImageViewFrame.origin.x -= XHThumbnailAnnotationViewExpandOffset/2;
+            _avatarImageView.frame = avatarImageViewFrame;
+        } else if (animationDirection == XHThumbnailAnnotationViewAnimationDirectionShrink) {
+            CGRect avatarImageViewFrame = _avatarImageView.frame;
+            avatarImageViewFrame.origin.x += XHThumbnailAnnotationViewExpandOffset;
+            _avatarImageView.frame = avatarImageViewFrame;
+        }
+    } completion:^(BOOL finished) {
+        if (animationDirection == XHThumbnailAnnotationViewAnimationDirectionShrink) {
+            _state = XHThumbnailAnnotationViewStateCollapsed;
+        }
+    }];
+    
+    // Bubble
+    CGRect largeRect = CGRectMake(self.bounds.origin.x-XHThumbnailAnnotationViewExpandOffset/2, self.bounds.origin.y, self.bounds.size.width+XHThumbnailAnnotationViewExpandOffset, self.bounds.size.height);
+    CGRect standardRect = CGRectMake(self.bounds.origin.x, self.bounds.origin.y, self.bounds.size.width, self.bounds.size.height);
+    CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"path"];
+    
+    animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    animation.repeatCount = 1;
+    animation.removedOnCompletion = NO;
+    animation.fillMode = kCAFillModeForwards;
+    animation.duration = XHThumbnailAnnotationViewAnimationDuration;
+    
+    // Stroke & Shadow From/To Values
+    CGPathRef fromPath = (animationDirection == XHThumbnailAnnotationViewAnimationDirectionGrow) ? [self newBubbleWithRect:standardRect] : [self newBubbleWithRect:largeRect];
+    animation.fromValue = (__bridge id)fromPath;
+    CGPathRelease(fromPath);
+    
+    CGPathRef toPath = (animationDirection == XHThumbnailAnnotationViewAnimationDirectionGrow) ? [self newBubbleWithRect:largeRect] : [self newBubbleWithRect:standardRect];
+    animation.toValue = (__bridge id)toPath;
+    CGPathRelease(toPath);
+    
+    [_strokeAndShadowLayer addAnimation:animation forKey:animation.keyPath];
+    
+    // ShapeLayer From/To Values
+    fromPath = (animationDirection == XHThumbnailAnnotationViewAnimationDirectionGrow) ?
+    [self newBubbleWithRect:standardRect andOffset:CGSizeMake(XHThumbnailAnnotationViewExpandOffset/2, 0)] : [self newBubbleWithRect:largeRect andOffset:CGSizeMake(XHThumbnailAnnotationViewExpandOffset/2, 0)];
+    animation.fromValue = (__bridge id)fromPath;
+    CGPathRelease(fromPath);
+    
+    toPath = (animationDirection == XHThumbnailAnnotationViewAnimationDirectionGrow) ? [self newBubbleWithRect:largeRect andOffset:CGSizeMake(XHThumbnailAnnotationViewExpandOffset/2, 0)] : [self newBubbleWithRect:standardRect andOffset:CGSizeMake(XHThumbnailAnnotationViewExpandOffset/2, 0)];
+    animation.toValue = (__bridge id)toPath;
+    CGPathRelease(toPath);
+    [_shapeLayer addAnimation:animation forKey:animation.keyPath];
+}
+
 #pragma mark - XHThumbnailAnnotationViewDelegate
 
 - (void)didSelectAnnotationViewInMap:(MKMapView *)mapView {
     // Center map at annotation point
     [mapView setCenterCoordinate:_coordinate animated:YES];
+    [self _expand];
 }
 
 - (void)didDeselectAnnotationViewInMap:(MKMapView *)mapView {
+    [self _shrink];
 }
 
 
