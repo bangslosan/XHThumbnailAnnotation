@@ -8,6 +8,14 @@
 
 #import "XHThumbnailAnnotationView.h"
 
+#define XHThumbnailAnnotationViewStandardWidth     75.0f
+#define XHThumbnailAnnotationViewStandardHeight    87.0f
+#define XHThumbnailAnnotationViewExpandOffset      200.0f
+#define XHThumbnailAnnotationViewVerticalOffset    34.0f
+#define XHThumbnailAnnotationViewAnimationDuration 0.25f
+#define XHThumbnailAnnotationViewShadowVisible     TRUE
+
+
 @implementation XHThumbnailAnnotationView
 
 @end
