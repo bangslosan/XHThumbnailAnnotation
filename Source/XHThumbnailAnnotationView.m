@@ -111,7 +111,46 @@
 }
 
 - (void)_setLayerProperties {
+    _shapeLayer = [ShadowShapeLayer layer];
+    CGPathRef shapeLayerPath = [self newBubbleWithRect:self.bounds andOffset:CGSizeMake(XHThumbnailAnnotationViewExpandOffset/2, 0)];
+    _shapeLayer.path = shapeLayerPath;
+    CGPathRelease(shapeLayerPath);
     
+    // Fill Callout Bubble & Add Shadow
+    _shapeLayer.fillColor = [[UIColor blackColor] CGColor];
+    
+    _strokeAndShadowLayer = [CAShapeLayer layer];
+    
+    CGPathRef _strokeAndShadowLayerPath = [self newBubbleWithRect:self.bounds];
+    _strokeAndShadowLayer.path = _strokeAndShadowLayerPath;
+    CGPathRelease(_strokeAndShadowLayerPath);
+    
+    _strokeAndShadowLayer.fillColor = [UIColor clearColor].CGColor;
+    
+    if (XHThumbnailAnnotationViewShadowVisible) {
+        _strokeAndShadowLayer.shadowColor = [UIColor blackColor].CGColor;
+        _strokeAndShadowLayer.shadowOffset = CGSizeMake (0, [[[UIDevice currentDevice] systemVersion] floatValue] >= 3.2 ? 3 : -3);
+        _strokeAndShadowLayer.shadowRadius = 5.0;
+        _strokeAndShadowLayer.shadowOpacity = 1.0;
+    }
+    
+    _strokeAndShadowLayer.strokeColor = [UIColor colorWithWhite:0.22 alpha:1.0].CGColor;
+    _strokeAndShadowLayer.lineWidth = 1.0;
+    
+    CAGradientLayer *bubbleGradient = [CAGradientLayer layer];
+    bubbleGradient.frame = CGRectMake(self.bounds.origin.x-XHThumbnailAnnotationViewExpandOffset/2, self.bounds.origin.y, XHThumbnailAnnotationViewExpandOffset+self.bounds.size.width, self.bounds.size.height-7);
+    bubbleGradient.colors = [NSArray arrayWithObjects:(id)[UIColor colorWithWhite:0 alpha:.75].CGColor, (id)[UIColor colorWithWhite:0 alpha:.75].CGColor,(id)[UIColor colorWithWhite:0.13 alpha:.75].CGColor,(id)[UIColor colorWithWhite:0.33 alpha:.75].CGColor, nil];
+    bubbleGradient.locations = [NSArray arrayWithObjects:[NSNumber numberWithFloat:0],[NSNumber numberWithFloat:0.53],[NSNumber numberWithFloat:.54],[NSNumber numberWithFloat:1], nil];
+    bubbleGradient.startPoint = CGPointMake(0.0f, 1.0f);
+    bubbleGradient.endPoint = CGPointMake(0.0f, 0.0f);
+    bubbleGradient.mask = _shapeLayer;
+    
+    _shapeLayer.masksToBounds = NO;
+    bubbleGradient.masksToBounds = NO;
+    _strokeAndShadowLayer.masksToBounds = NO;
+    
+    [_strokeAndShadowLayer addSublayer:bubbleGradient];
+    [self.layer insertSublayer:_strokeAndShadowLayer atIndex:0];
 }
 
 @end
