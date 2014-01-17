@@ -15,6 +15,19 @@
 #define XHThumbnailAnnotationViewAnimationDuration 0.25f
 #define XHThumbnailAnnotationViewShadowVisible     TRUE
 
+@interface ShadowShapeLayer : CAShapeLayer
+@end
+
+@implementation ShadowShapeLayer
+
+- (void)drawInContext:(CGContextRef)context {
+    CGContextSaveGState(context);
+    CGContextSetShadow(context, CGSizeMake(0, 6), 6);
+    [super drawInContext:context];
+    CGContextRestoreGState(context);
+}
+
+@end
 
 @implementation XHThumbnailAnnotationView
 
