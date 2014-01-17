@@ -24,6 +24,6 @@
 @property (nonatomic, readwrite) CLLocationCoordinate2D coordinate;
 
 - (instancetype)initWithThumbnail:(XHThumbnail *)thumbnail;
-- (void)updateThumbnail:(XHThumbnail *)thumbnail aniamtion:(BOOL)animated;
+- (void)updateThumbnail:(XHThumbnail *)thumbnail animated:(BOOL)animated;
 
 @end
