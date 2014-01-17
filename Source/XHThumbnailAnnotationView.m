@@ -31,4 +31,16 @@
 
 @implementation XHThumbnailAnnotationView
 
+- (instancetype)initWithAnnotation:(id<MKAnnotation>)annotation {
+    self = [super initWithAnnotation:annotation reuseIdentifier:@"XHThumbnailAnnotationView"];
+    if (self) {
+        [self _setup];
+    }
+    return self;
+}
+
+- (void)_setup {
+    
+}
+
 @end

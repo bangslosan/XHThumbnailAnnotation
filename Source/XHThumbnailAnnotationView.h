@@ -42,5 +42,4 @@ typedef enum {
 
 - (instancetype)initWithAnnotation:(id <MKAnnotation> )annotation;
 
-
 @end
