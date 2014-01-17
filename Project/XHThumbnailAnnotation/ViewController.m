@@ -51,6 +51,10 @@
     _mapView.delegate = self;
     [self.view addSubview:self.mapView];
     
+    //设置显示区域
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(CLLocationCoordinate2DMake(23.744419, 114.696308), 10000, 10000);
+    [_mapView setRegion:region animated:TRUE];
+    
     // Annotations
     [_mapView addAnnotations:[self _generateAnnotations]];
 }
