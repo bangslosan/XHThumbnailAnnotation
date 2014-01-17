@@ -7,6 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <MapKit/MapKit.h>
+#import "XHThumbnail.h"
+#import "XHThumbnailAnnotationView.h"
+
+@protocol XHThumbnailAnnotationDelegate <NSObject>
+
+- (MKAnnotationView *)annotationViewInMap:(MKMapView *)mapView;
+
+@end
 
 @interface XHThumbnailAnnotation : NSObject
 
