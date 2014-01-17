@@ -10,4 +10,14 @@
 
 @implementation XHThumbnailAnnotation
 
+- (instancetype)initWithThumbnail:(XHThumbnail *)thumbnail {
+    self = [super init];
+    if (self) {
+        _coordinate = thumbnail.coordinate;
+        _thumbnail = thumbnail;
+    }
+    
+    return self;
+}
+
 @end
