@@ -11,7 +11,27 @@
 
 #import "XHThumbnail.h"
 
-@interface XHThumbnailAnnotationView : MKAnnotationView
+// 需要两个枚举来定制UI的布局和样式
+typedef enum {
+    XHThumbnailAnnotationViewAnimationDirectionGrow,
+    XHThumbnailAnnotationViewAnimationDirectionShrink,
+} XHThumbnailAnnotationViewAnimationDirection;
+
+typedef enum {
+    XHThumbnailAnnotationViewStateCollapsed,
+    XHThumbnailAnnotationViewStateExpanded,
+    XHThumbnailAnnotationViewStateAnimating,
+} XHThumbnailAnnotationViewState;
+
+
+
+@interface XHThumbnailAnnotationView : MKAnnotationView {
+@private
+    CAShapeLayer *_shapeLayer;
+    CAShapeLayer *_strokeAndShadowLayer;
+    UIButton *_disclosureButton;
+    XHThumbnailAnnotationViewState _state;
+}
 
 // 显示简单的信息，详细信息需要在详细页面
 @property (nonatomic, readwrite) CLLocationCoordinate2D coordinate;
