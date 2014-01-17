@@ -9,6 +9,18 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 
+#import "XHThumbnail.h"
+
 @interface XHThumbnailAnnotationView : MKAnnotationView
+
+// 显示简单的信息，详细信息需要在详细页面
+@property (nonatomic, readwrite) CLLocationCoordinate2D coordinate;
+@property (nonatomic, strong) UIImageView *avatarImageView;
+@property (nonatomic, strong) UILabel *userNameLabel;
+@property (nonatomic, strong) UILabel *distanceLabel;
+@property (nonatomic, copy) XHThumbnailActionBlock disclosureBlock;
+
+- (id)initWithAnnotation:(id <MKAnnotation> )annotation;
+
 
 @end
