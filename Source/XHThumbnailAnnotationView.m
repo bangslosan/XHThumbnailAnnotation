@@ -252,11 +252,11 @@
     animation.duration = XHThumbnailAnnotationViewAnimationDuration;
     
     // Stroke & Shadow From/To Values
-    CGPathRef fromPath = (animationDirection == XHThumbnailAnnotationViewAnimationDirectionGrow) ? [self newBubbleWithRect:standardRect] : [self newBubbleWithRect:largeRect];
+    CGPathRef fromPath = (animationDirection == XHThumbnailAnnotationViewAnimationDirectionGrow) ? [self _newBubbleWithRect:standardRect] : [self _newBubbleWithRect:largeRect];
     animation.fromValue = (__bridge id)fromPath;
     CGPathRelease(fromPath);
     
-    CGPathRef toPath = (animationDirection == XHThumbnailAnnotationViewAnimationDirectionGrow) ? [self newBubbleWithRect:largeRect] : [self newBubbleWithRect:standardRect];
+    CGPathRef toPath = (animationDirection == XHThumbnailAnnotationViewAnimationDirectionGrow) ? [self _newBubbleWithRect:largeRect] : [self _newBubbleWithRect:standardRect];
     animation.toValue = (__bridge id)toPath;
     CGPathRelease(toPath);
     
@@ -264,11 +264,11 @@
     
     // ShapeLayer From/To Values
     fromPath = (animationDirection == XHThumbnailAnnotationViewAnimationDirectionGrow) ?
-    [self newBubbleWithRect:standardRect andOffset:CGSizeMake(XHThumbnailAnnotationViewExpandOffset/2, 0)] : [self newBubbleWithRect:largeRect andOffset:CGSizeMake(XHThumbnailAnnotationViewExpandOffset/2, 0)];
+    [self _newBubbleWithRect:standardRect andOffset:CGSizeMake(XHThumbnailAnnotationViewExpandOffset/2, 0)] : [self _newBubbleWithRect:largeRect andOffset:CGSizeMake(XHThumbnailAnnotationViewExpandOffset/2, 0)];
     animation.fromValue = (__bridge id)fromPath;
     CGPathRelease(fromPath);
     
-    toPath = (animationDirection == XHThumbnailAnnotationViewAnimationDirectionGrow) ? [self newBubbleWithRect:largeRect andOffset:CGSizeMake(XHThumbnailAnnotationViewExpandOffset/2, 0)] : [self newBubbleWithRect:standardRect andOffset:CGSizeMake(XHThumbnailAnnotationViewExpandOffset/2, 0)];
+    toPath = (animationDirection == XHThumbnailAnnotationViewAnimationDirectionGrow) ? [self _newBubbleWithRect:largeRect andOffset:CGSizeMake(XHThumbnailAnnotationViewExpandOffset/2, 0)] : [self _newBubbleWithRect:standardRect andOffset:CGSizeMake(XHThumbnailAnnotationViewExpandOffset/2, 0)];
     animation.toValue = (__bridge id)toPath;
     CGPathRelease(toPath);
     [_shapeLayer addAnimation:animation forKey:animation.keyPath];
