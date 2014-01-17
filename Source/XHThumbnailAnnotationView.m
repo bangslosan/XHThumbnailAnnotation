@@ -189,5 +189,15 @@
     return path;
 }
 
+#pragma mark - XHThumbnailAnnotationViewDelegate
+
+- (void)didSelectAnnotationViewInMap:(MKMapView *)mapView {
+    // Center map at annotation point
+    [mapView setCenterCoordinate:_coordinate animated:YES];
+}
+
+- (void)didDeselectAnnotationViewInMap:(MKMapView *)mapView {
+}
+
 
 @end
