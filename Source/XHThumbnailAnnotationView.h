@@ -40,7 +40,7 @@ typedef enum {
 @property (nonatomic, strong) UILabel *distanceLabel;
 @property (nonatomic, copy) XHThumbnailActionBlock disclosureBlock;
 
-- (id)initWithAnnotation:(id <MKAnnotation> )annotation;
+- (instancetype)initWithAnnotation:(id <MKAnnotation> )annotation;
 
 
 @end
