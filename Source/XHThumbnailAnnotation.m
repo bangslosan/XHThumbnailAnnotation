@@ -46,11 +46,12 @@
 
 - (MKAnnotationView *)annotationViewInMap:(MKMapView *)mapView {
     if (!_thumbnailAnnotationView) {
-        _thumbnailAnnotationView = (XHThumbnailAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:@"JPSThumbnailAnnotationView"];
+        _thumbnailAnnotationView = (XHThumbnailAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:@"XHThumbnailAnnotationView"];
         if (!_thumbnailAnnotationView) _thumbnailAnnotationView = [[XHThumbnailAnnotationView alloc] initWithAnnotation:self];
     } else {
         _thumbnailAnnotationView.annotation = self;
     }
+    
     [self updateThumbnail:_thumbnail animated:NO];
     return _thumbnailAnnotationView;
 }

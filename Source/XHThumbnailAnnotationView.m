@@ -65,10 +65,10 @@
     
     // Image View
     _avatarImageView = [[UIImageView alloc] initWithFrame:CGRectMake(12.5, 12, 50, 47)];
-    _avatarImageView.layer.cornerRadius = 4.0;
-    _avatarImageView.layer.masksToBounds = YES;
-    _avatarImageView.layer.borderColor = [[UIColor blackColor] CGColor];
-    _avatarImageView.layer.borderWidth = 1;
+//    _avatarImageView.layer.cornerRadius = 4.0;
+//    _avatarImageView.layer.masksToBounds = YES;
+//    _avatarImageView.layer.borderColor = [[UIColor blackColor] CGColor];
+//    _avatarImageView.layer.borderWidth = 1;
     [self addSubview:self.avatarImageView];
     
     // Name Label

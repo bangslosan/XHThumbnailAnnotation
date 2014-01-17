@@ -63,7 +63,7 @@
     
     // Parliament of Canada
     XHThumbnailUser *ottawaUser = [[XHThumbnailUser alloc] init];
-    ottawaUser.avatarImage = [UIImage imageNamed:@"empire.jpg"];
+    ottawaUser.avatarImage = [UIImage imageNamed:@"ottawa.jpg"];
     ottawaUser.userName = @"Jack";
     ottawaUser.distance = @"1000米以内";
     XHThumbnail *ottawa = [[XHThumbnail alloc] init];
@@ -86,13 +86,21 @@
 #pragma mark - MKMapViewDelegate
 
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
-    
+    if ([view conformsToProtocol:@protocol(XHThumbnailAnnotationViewDelegate)]) {
+        [((NSObject<XHThumbnailAnnotationViewDelegate> *)view) didSelectAnnotationViewInMap:mapView];
+    }
 }
 
 - (void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView *)view {
+    if ([view conformsToProtocol:@protocol(XHThumbnailAnnotationViewDelegate)]) {
+        [((NSObject<XHThumbnailAnnotationViewDelegate> *)view) didDeselectAnnotationViewInMap:mapView];
+    }
 }
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
+    if ([annotation conformsToProtocol:@protocol(XHThumbnailAnnotationDelegate)]) {
+        return [((NSObject<XHThumbnailAnnotationDelegate> *)annotation) annotationViewInMap:mapView];
+    }
     return nil;
 }
 

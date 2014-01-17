@@ -30,7 +30,7 @@ typedef enum {
 
 @end
 
-@interface XHThumbnailAnnotationView : MKAnnotationView {
+@interface XHThumbnailAnnotationView : MKAnnotationView <XHThumbnailAnnotationViewDelegate> {
 
 }
 
@@ -39,7 +39,6 @@ typedef enum {
 @property (nonatomic, strong) UILabel *userNameLabel;
 @property (nonatomic, strong) UILabel *distanceLabel;
 
-@property (nonatomic, weak) id <XHThumbnailAnnotationViewDelegate> delegate;
 @property (nonatomic, readwrite) CLLocationCoordinate2D coordinate;
 @property (nonatomic, copy) XHThumbnailActionBlock disclosureBlock;
 
