@@ -22,6 +22,7 @@
 		AB5E9FF6188937020092E962 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB5E9FD5188937020092E962 /* UIKit.framework */; };
 		AB5E9FFE188937020092E962 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AB5E9FFC188937020092E962 /* InfoPlist.strings */; };
 		AB5EA000188937020092E962 /* XHThumbnailAnnotationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5E9FFF188937020092E962 /* XHThumbnailAnnotationTests.m */; };
+		AB5EA00C188937A60092E962 /* XHThumbnailAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = AB5EA00B188937A60092E962 /* XHThumbnailAnnotation.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,8 @@
 		AB5E9FFB188937020092E962 /* XHThumbnailAnnotationTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "XHThumbnailAnnotationTests-Info.plist"; sourceTree = "<group>"; };
 		AB5E9FFD188937020092E962 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		AB5E9FFF188937020092E962 /* XHThumbnailAnnotationTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XHThumbnailAnnotationTests.m; sourceTree = "<group>"; };
+		AB5EA00A188937A60092E962 /* XHThumbnailAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XHThumbnailAnnotation.h; sourceTree = "<group>"; };
+		AB5EA00B188937A60092E962 /* XHThumbnailAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XHThumbnailAnnotation.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +87,7 @@
 		AB5E9FC5188937020092E962 = {
 			isa = PBXGroup;
 			children = (
+				AB5EA009188937960092E962 /* Source */,
 				AB5E9FD7188937020092E962 /* XHThumbnailAnnotation */,
 				AB5E9FF9188937020092E962 /* XHThumbnailAnnotationTests */,
 				AB5E9FD0188937020092E962 /* Frameworks */,
@@ -153,6 +157,16 @@
 				AB5E9FFC188937020092E962 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		AB5EA009188937960092E962 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				AB5EA00A188937A60092E962 /* XHThumbnailAnnotation.h */,
+				AB5EA00B188937A60092E962 /* XHThumbnailAnnotation.m */,
+			);
+			name = Source;
+			path = ../Source;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -254,6 +268,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AB5E9FEB188937020092E962 /* ViewController.m in Sources */,
+				AB5EA00C188937A60092E962 /* XHThumbnailAnnotation.m in Sources */,
 				AB5E9FE2188937020092E962 /* AppDelegate.m in Sources */,
 				AB5E9FDE188937020092E962 /* main.m in Sources */,
 			);
@@ -474,6 +489,7 @@
 				AB5EA005188937020092E962 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		AB5EA006188937020092E962 /* Build configuration list for PBXNativeTarget "XHThumbnailAnnotationTests" */ = {
 			isa = XCConfigurationList;
@@ -482,6 +498,7 @@
 				AB5EA008188937020092E962 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
