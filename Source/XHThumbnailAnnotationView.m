@@ -30,7 +30,11 @@
 @end
 
 @interface XHThumbnailAnnotationView () {
-    
+@private
+    CAShapeLayer *_shapeLayer;
+    CAShapeLayer *_strokeAndShadowLayer;
+    UIButton *_disclosureButton;
+    XHThumbnailAnnotationViewState _state;
 }
 
 @property (nonatomic, strong) UIImageView *avatarImageView;

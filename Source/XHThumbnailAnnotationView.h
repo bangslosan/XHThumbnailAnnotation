@@ -26,11 +26,7 @@ typedef enum {
 
 
 @interface XHThumbnailAnnotationView : MKAnnotationView {
-@private
-    CAShapeLayer *_shapeLayer;
-    CAShapeLayer *_strokeAndShadowLayer;
-    UIButton *_disclosureButton;
-    XHThumbnailAnnotationViewState _state;
+
 }
 
 // 显示简单的信息，详细信息需要在详细页面
